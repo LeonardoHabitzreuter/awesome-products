@@ -6,5 +6,14 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: `${__dirname}/public/dist`
+  },
+  module: {
+    rules: [{
+      test: /\.styl$/,
+      use: [
+        'style-loader',
+        'css-loader'
+      ]
+    }]
   }
 }
