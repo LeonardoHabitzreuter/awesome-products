@@ -1,8 +1,12 @@
 require('webpack')
-const mode = process.env.NODE_ENV
+const { join } = require('path')
+
+const paths = {
+  src: join(__dirname, 'src')
+}
 
 module.exports = {
-  mode,
+  mode: process.env.NODE_ENV,
   entry: './src/index.js',
   output: {
     path: `${__dirname}/public/dist`
@@ -18,5 +22,10 @@ module.exports = {
       test: /\.js/,
       use: ['babel-loader']
     }]
+  },
+  resolve: {
+    alias: {
+      components: join(paths.src, 'components')
+    }
   }
 }
