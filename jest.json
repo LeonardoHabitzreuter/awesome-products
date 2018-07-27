@@ -1,0 +1,9 @@
+{
+  "testURL": "http://localhost",
+  "setupFiles": ["<rootDir>/tests/setup.js"],
+  "snapshotSerializers": ["<rootDir>/node_modules/enzyme-to-json/serializer"],
+  "moduleNameMapper": {
+      "^components(.*)$": "<rootDir>/src/components$1",
+      "\\.(css)$": "identity-obj-proxy"
+  }
+}
