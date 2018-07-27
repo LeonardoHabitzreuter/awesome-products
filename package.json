@@ -1,0 +1,22 @@
+{
+  "name": "awesome-products",
+  "version": "1.0.0",
+  "description": "Store your products and get them direct from the browser!",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeonardoHabitzreuter/awesome-products.git"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": "Leonardo Habitzreuter <leonardo.h@hbsis.com.br> (https://github.com/LeonardoHabitzreuter)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LeonardoHabitzreuter/awesome-products/issues"
+  },
+  "homepage": "https://github.com/LeonardoHabitzreuter/awesome-products#readme"
+}
