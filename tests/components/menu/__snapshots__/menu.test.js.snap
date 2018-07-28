@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu component should renders properly 1`] = `
+<Menu
+  className=""
+  defaultSelectedKeys={
+    Array [
+      "/",
+    ]
+  }
+  focusable={false}
+  mode="inline"
+  onClick={[Function]}
+  prefixCls="ant-menu"
+  theme="dark"
+>
+  <MenuItem
+    key="/newProduct"
+  >
+    <Icon
+      type="logout"
+    />
+    <span>
+      New Product
+    </span>
+  </MenuItem>
+  <MenuItem
+    key="/products"
+  >
+    <Icon
+      type="logout"
+    />
+    <span>
+      My Products
+    </span>
+  </MenuItem>
+</Menu>
+`;

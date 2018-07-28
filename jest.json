@@ -1,9 +1,21 @@
 {
-  "testURL": "http://localhost",
-  "setupFiles": ["<rootDir>/tests/setup.js"],
-  "snapshotSerializers": ["<rootDir>/node_modules/enzyme-to-json/serializer"],
-  "moduleNameMapper": {
-      "^components(.*)$": "<rootDir>/src/components$1",
-      "\\.(css)$": "identity-obj-proxy"
-  }
+    "testURL": "http://localhost",
+    "collectCoverageFrom": [
+        "src/**/*.js",
+        "!src/index.js",
+        "!src/app.js",
+        "!src/root.js"
+    ],
+    "coverageThreshold": {
+        "global": {
+          "functions": 50,
+          "lines": 50
+        }
+    },
+    "setupFiles": ["<rootDir>/tests/setup.js"],
+    "snapshotSerializers": ["<rootDir>/node_modules/enzyme-to-json/serializer"],
+    "moduleNameMapper": {
+        "^components(.*)$": "<rootDir>/src/components$1",
+        "\\.(css|less|styl)$": "identity-obj-proxy"
+    }
 }

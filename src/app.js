@@ -1,16 +1,31 @@
-import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import React, { PureComponent } from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import ReadProducts from './pages/products/read'
 import CreateProducts from './pages/products/create'
+import Layout from './layout'
+
+class Router extends PureComponent {
+  render () {
+    const { component: Component, ...rest } = this.props
+
+    return (
+      <Route {...rest} render={props => (
+        <Layout>
+          <Component {...props} />
+        </Layout>
+      )} />
+    )
+  }
+}
 
 const App = () => (
-  <Router>
+  <BrowserRouter>
     <Switch>
-      <Route path='/' component={ReadProducts} />
-      <Route path='/products' component={ReadProducts} />
-      <Route path='/products/new' component={CreateProducts} />
+      <Router exact path='/' component={ReadProducts} />
+      <Router path='/products' component={ReadProducts} />
+      <Router path='/newProduct' component={CreateProducts} />
     </Switch>
-  </Router>
+  </BrowserRouter>
 )
 
 export default App
