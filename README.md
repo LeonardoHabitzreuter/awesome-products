@@ -12,7 +12,7 @@ npm run lint
 ```
 
 ## Getting started
-Install [nodeJs](nodejs.org/en/download/) on your local machine and run the following code to install all the dependencies
+Install [nodeJs](http://nodejs.org/en/download/) on your local machine and run the following code to install all the dependencies
 
 ```
 npm install
