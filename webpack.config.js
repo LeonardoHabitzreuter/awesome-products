@@ -13,13 +13,15 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.styl$/,
+      exclude: '/node_modules/',
+      test: /\.css$/,
       use: [
         'style-loader',
         'css-loader'
       ]
     }, {
       test: /\.js/,
+      exclude: '/node_modules/',
       use: ['babel-loader']
     }]
   },
@@ -27,5 +29,9 @@ module.exports = {
     alias: {
       components: join(paths.src, 'components')
     }
+  },
+  devServer: {
+    contentBase: join(__dirname, 'public'),
+    compress: true
   }
 }

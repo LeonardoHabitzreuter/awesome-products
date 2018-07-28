@@ -35,8 +35,8 @@ npm run build:dev
 ```
 
 ### ToDo:
-configure webpack-dev-server
 configure router
 configure bootstrapper
 configure docker
 configure coverage
+configure hot load
