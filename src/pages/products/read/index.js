@@ -1,5 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-export default props => (
-  <h1>Read</h1>
-)
+class ReadProducts extends Component {
+  render () {
+    return (
+      <h1>Products</h1>
+    )
+  }
+}
+
+export default ReadProducts

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`button component should renders properly 1`] = `
+<button
+  className="btn btn-danger"
+  type="button"
+>
+  Test
+</button>
+`;
