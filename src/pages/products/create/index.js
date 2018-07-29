@@ -7,20 +7,26 @@ import validate from './validation'
 import measurementUnits from './measurementUnits'
 import { newId } from 'common'
 import { createNumberMask } from 'common/masks'
-import { create } from 'api/products'
+import { create, getById } from 'api/products'
 import styles from './styles.styl'
 const MASK = createNumberMask({ prefix: 'R$', thousandsSeparatorSymbol: '.', allowDecimal: true, decimalSymbol: ',' })
 
 class CreateProduct extends Component {
-  state = {
-    showAlert: false,
-    errorMessage: '',
-    product: {
-      id: null,
-      name: '',
-      amount: 0,
-      price: null,
-      measurementUnit: 'Unit'
+  constructor (props) {
+    super(props)
+    const redirectedFromAnotherPage = !!props.location.state
+    this.state = {
+      showAlert: false,
+      errorMessage: '',
+      product: redirectedFromAnotherPage
+        ? getById(props.location.state.editProduct)
+        : {
+          id: null,
+          name: '',
+          amount: 0,
+          price: null,
+          measurementUnit: 'Unit'
+        }
     }
   }
 

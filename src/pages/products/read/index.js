@@ -2,9 +2,11 @@ import React, { Component, Fragment } from 'react'
 import Table from './Table'
 import { showMessage } from 'components'
 import { get as getProducts, remove as deleteProduct } from 'api/products'
+import { Redirect } from 'react-router-dom'
 
 class ReadProducts extends Component {
   state = {
+    editProduct: null,
     products: []
   }
 
@@ -13,8 +15,7 @@ class ReadProducts extends Component {
   }
 
   redirectToEditPage (productId) {
-    console.log('redirect')
-    console.log(productId)
+    this.setState({ editProduct: productId })
   }
 
   delete (productId) {
@@ -35,14 +36,23 @@ class ReadProducts extends Component {
 
   render () {
     return (
-      <Fragment>
-        <h1>Products</h1>
-        <Table
-          onEdit={productId => this.redirectToEditPage(productId)}
-          onDelete={productId => this.delete(productId)}
-          products={this.state.products}
-        />
-      </Fragment>
+      !this.state.editProduct ? (
+        <Fragment>
+          <h1>Products</h1>
+          <Table
+            onEdit={productId => this.redirectToEditPage(productId)}
+            onDelete={productId => this.delete(productId)}
+            products={this.state.products}
+          />
+        </Fragment>
+      ) : (
+        <Redirect to={{
+          pathname: 'newProduct',
+          state: {
+            editProduct: this.state.editProduct
+          }
+        }} />
+      )
     )
   }
 }
