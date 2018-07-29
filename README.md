@@ -65,7 +65,7 @@ npm run build
 npm run build:dev
 ```
 
-# Libraries and frameworks
+# Tools
 - React
 - React router
 - Webpack and Webpack devServer
@@ -73,3 +73,4 @@ npm run build:dev
 - AntD for the menu component
 - Babel for transpile the code to ES5
 - Jest e enzyme for automated tests
+- Nginx for serve the static files on the docker image
