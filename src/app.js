@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import ReadProducts from './pages/products/read'
-import CreateProducts from './pages/products/create'
+import StoreProduct from './pages/products/store'
 import Layout from './layout'
 
 const App = () => (
@@ -17,9 +17,9 @@ const App = () => (
           <ReadProducts {...props} />
         </Layout>
       )} />
-      <Route path='/newProduct' render={props => (
+      <Route path='/storeProduct' render={props => (
         <Layout>
-          <CreateProducts {...props} />
+          <StoreProduct {...props} />
         </Layout>
       )} />
     </Switch>

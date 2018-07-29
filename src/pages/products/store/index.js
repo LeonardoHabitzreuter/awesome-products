@@ -10,22 +10,22 @@ import { getById, create, update } from 'api/products'
 import styles from './styles.styl'
 const MASK = createNumberMask({ prefix: 'R$', thousandsSeparatorSymbol: '.', allowDecimal: true, decimalSymbol: ',' })
 
-class CreateProduct extends Component {
+class StoreProduct extends Component {
   constructor (props) {
     super(props)
-    const redirectedFromAnotherPage = !!props.location.state
+    const editMode = !!props.location.state && props.location.state.editProduct
+    const editProduct = editMode ? getById(props.location.state.editProduct) : null
+
     this.state = {
       showAlert: false,
       errorMessage: '',
-      product: redirectedFromAnotherPage
-        ? getById(props.location.state.editProduct)
-        : {
-          id: null,
-          name: '',
-          amount: 0,
-          price: null,
-          measurementUnit: 'Unit'
-        }
+      product: editProduct || {
+        id: null,
+        name: '',
+        amount: 0,
+        price: null,
+        measurementUnit: 'Unit'
+      }
     }
   }
 
@@ -60,7 +60,7 @@ class CreateProduct extends Component {
   render () {
     return (
       <Fragment>
-        <H1>Create a product</H1>
+        <H1>Store your product</H1>
         <Form onSubmit={() => this.storeProduct()}>
           <div className='form-row'>
             <div className='col-md-4 mb-3'>
@@ -116,11 +116,11 @@ class CreateProduct extends Component {
             </div>
           </div>
           <Button type='button' className='btn btn-danger' onClick={() => this.redirectToProductsPage()}>Cancel</Button>
-          <Button className={`btn btn-success ${styles.createButton}`}>Create</Button>
+          <Button className={`btn btn-success ${styles.createButton}`}>Store</Button>
         </Form>
       </Fragment>
     )
   }
 }
 
-export default withRouter(CreateProduct)
+export default withRouter(StoreProduct)

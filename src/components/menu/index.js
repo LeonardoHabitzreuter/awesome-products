@@ -8,9 +8,9 @@ const reloadPage = ({ key }) => {
 
 export default props => (
   <Menu theme='dark' defaultSelectedKeys={[window.location.pathname]} mode='inline' onClick={reloadPage}>
-    <Menu.Item key='/newProduct'>
+    <Menu.Item key='/storeProduct'>
       <Icon type='profile' />
-      <span>New Product</span>
+      <span>Store a Product</span>
     </Menu.Item>
     <Menu.Item key='/products'>
       <Icon type='table' />

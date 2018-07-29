@@ -14,8 +14,8 @@ const breadcrumbsByURL = [{
   url: '/products',
   breadcrumb: 'My products'
 }, {
-  url: '/newProduct',
-  breadcrumb: 'New product'
+  url: '/storeProduct',
+  breadcrumb: 'Store your product'
 }]
 
 export default class Layout extends Component {
