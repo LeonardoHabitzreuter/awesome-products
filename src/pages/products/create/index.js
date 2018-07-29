@@ -1,8 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import { Form, H1, Label, Input, Button, showMessage, Dropdown } from 'components'
+import { Form, H1, Label, Button, showMessage, Dropdown } from 'components'
+import Input, { MaskedInput } from 'components/input'
 import { assoc, isEmpty, join } from 'ramda'
 import validate from './validation'
 import measurementUnits from './measurementUnits'
+import { createNumberMask } from 'common/masks'
+const MASK = createNumberMask({ prefix: 'R$', thousandsSeparatorSymbol: '.', allowDecimal: true, decimalSymbol: ',' })
 
 class CreateProduct extends Component {
   state = {
@@ -11,16 +14,13 @@ class CreateProduct extends Component {
     product: {
       name: '',
       amount: 0,
+      price: null,
       measurementUnit: 'Unit'
     }
   }
 
   handleChange (prop, value) {
     this.setState({ product: assoc(prop, value, this.state.product) })
-  }
-
-  handleChangeAmount (amount) {
-    this.setState({ product: { ...this.state.product, amount } })
   }
 
   storeProduct () {
@@ -65,7 +65,7 @@ class CreateProduct extends Component {
                   type='number'
                   id='amount'
                   value={this.state.product.amount}
-                  onChange={amount => this.handleChangeAmount(amount)} />
+                  onChange={amount => this.handleChange('amount', amount)} />
                 <div className='input-group-prepend'>
                   <span className='input-group-text' id='measurement'>{
                     measurementUnits.find(unit => unit.name === this.state.product.measurementUnit).acronym
@@ -77,7 +77,12 @@ class CreateProduct extends Component {
           <div className='form-row'>
             <div className='col-md-4 mb-3'>
               <Label htmlFor='price'>Price</Label>
-              <Input id='price' placeholder='Price' required />
+              <MaskedInput
+                required
+                mask={MASK}
+                id='price'
+                value={this.state.product.price}
+                onChange={price => this.handleChange('price', price)} />
             </div>
             <div className='col-md-4 mb-3'>
               <Label htmlFor='expiryDate'>Expiry date</Label>

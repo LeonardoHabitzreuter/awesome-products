@@ -9,5 +9,5 @@ export default [{
 }, {
   name: 'Liter',
   acronym: 'lt',
-  convert: value => value.toFixed(3)
+  convert: value => Number.parseFloat(value).toFixed(3)
 }]
