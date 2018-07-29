@@ -12,16 +12,31 @@ npm run lint
 ```
 
 ## Getting started
-Install [nodeJs](http://nodejs.org/en/download/) on your local machine and run the following code to install all the dependencies
 
+### With nodeJs:
+Install [nodeJs](http://nodejs.org/en/download/) on your local machine
+
+**Install all the dependencies:**
 ```
 npm install
 ```
 
-## Running the server
-
+**Run the server:**
 ```
 npm start
+```
+
+### With docker:
+Install [docker](https://www.docker.com/get-docker/) on your local machine
+
+**Build the app image:**
+```
+docker image build -t awesome-products .
+```
+
+**Run an app container:**
+```
+docker container run -dp 3000:80 --name products awesome-products
 ```
 
 The app will be available at **http://localhost:3000**
