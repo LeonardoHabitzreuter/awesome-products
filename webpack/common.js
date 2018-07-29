@@ -101,7 +101,8 @@ module.exports = {
       src: paths.src,
       css: join(paths.src, 'css'),
       components: join(paths.src, 'components'),
-      common: join(paths.src, 'common')
+      common: join(paths.src, 'common'),
+      storage: join(paths.src, 'storage')
     }
   }
 }

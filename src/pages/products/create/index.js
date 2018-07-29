@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import { Form, H1, Label, Button, showMessage, Dropdown } from 'components'
 import Input, { MaskedInput } from 'components/input'
-import { assoc, isEmpty, join } from 'ramda'
+import { assoc, isEmpty, join, defaultTo } from 'ramda'
 import validate from './validation'
 import measurementUnits from './measurementUnits'
+import { newId } from 'common'
 import { createNumberMask } from 'common/masks'
+import { store } from 'storage'
 const MASK = createNumberMask({ prefix: 'R$', thousandsSeparatorSymbol: '.', allowDecimal: true, decimalSymbol: ',' })
 
 class CreateProduct extends Component {
@@ -12,6 +14,7 @@ class CreateProduct extends Component {
     showAlert: false,
     errorMessage: '',
     product: {
+      id: null,
       name: '',
       amount: 0,
       price: null,
@@ -31,8 +34,10 @@ class CreateProduct extends Component {
 
     const selectedUnit = measurementUnits.find(unit => unit.name === this.state.product.measurementUnit)
     const { product } = this.state
-    const x = { ...product, amount: selectedUnit.convert(product.amount) }
+    var defaultToId = defaultTo(newId())
+    const x = { ...product, id: defaultToId(product.id), amount: selectedUnit.convert(product.amount) }
     console.log(x)
+    store(x.id, x)
     showMessage('Success', 'Your product was stored successfully!', 'success')
   }
 
