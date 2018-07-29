@@ -14,7 +14,8 @@ export const update = product => {
 }
 
 export const remove = productId => {
-
+  const products = get()
+  store(PRODUCTS_KEY, products.filter(product => product.id !== productId))
 }
 
 export const get = () => getByKey(PRODUCTS_KEY) || []

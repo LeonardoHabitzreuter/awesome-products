@@ -22,17 +22,15 @@ const columns = (onEdit, onDelete) => (
   }, {
     description: 'Price',
     key: 'price'
-  }, 
-  // {
-  //   description: 'Actions',
-  //   renderer: () => (
-  //     <Actions
-  //       onEdit={onEdit}
-  //       onDelete={onDelete}
-  //     />
-  //   )
-  // }
-]
+  }, {
+    description: 'Actions',
+    renderer: () => (
+      <Actions
+        onEdit={onEdit}
+        onDelete={onDelete}
+      />
+    )
+  }]
 )
 
 const Actions = ({ onEdit, onDelete, data }) => (
@@ -43,7 +41,7 @@ const Actions = ({ onEdit, onDelete, data }) => (
     />
     <Icon
       type='delete'
-      onClick={() => onEdit(onDelete.id)}
+      onClick={() => onDelete(data.id)}
     />
   </div>
 )

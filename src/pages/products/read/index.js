@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import Table from './Table'
-import { get as getProducts } from 'api/products'
+import { showMessage } from 'components'
+import { get as getProducts, remove as deleteProduct } from 'api/products'
 
 class ReadProducts extends Component {
   state = {
@@ -12,11 +13,24 @@ class ReadProducts extends Component {
   }
 
   redirectToEditPage (productId) {
-
+    console.log('redirect')
+    console.log(productId)
   }
 
   delete (productId) {
-
+    showMessage({
+      title: 'Are you sure?',
+      text: 'Are you sure that you want to delete the product?',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true
+    })
+    .then(willDelete => {
+      if (willDelete) {
+        deleteProduct(productId)
+        this.setState({ products: this.state.products.filter(product => product.id !== productId) })
+      }
+    })
   }
 
   render () {
