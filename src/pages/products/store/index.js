@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { withRouter } from 'react-router-dom'
-import { Form, H1, Label, Button, showMessage, Dropdown } from 'components'
+import { Form, H1, Label, Button, showMessage, Dropdown, Boolean } from 'components'
 import Input, { MaskedInput } from 'components/input'
 import { assoc, isEmpty, join } from 'ramda'
 import validate from './validation'
@@ -21,6 +21,7 @@ class StoreProduct extends Component {
       errorMessage: '',
       product: editProduct || {
         id: null,
+        perishable: false,
         name: '',
         amount: 0,
         price: null,
@@ -62,6 +63,15 @@ class StoreProduct extends Component {
       <Fragment>
         <H1>Store your product</H1>
         <Form onSubmit={() => this.storeProduct()}>
+          <div className='form-row'>
+            <div className='col-md-12 mb-9'>
+              <Label htmlFor='perishable'>Perishable</Label>
+              <Boolean
+                id='perishable'
+                value={this.state.product.perishable}
+                onChange={perishable => this.handleChange('perishable', perishable)} />
+            </div>
+          </div>
           <div className='form-row'>
             <div className='col-md-4 mb-3'>
               <Label htmlFor='name'>Name</Label>
