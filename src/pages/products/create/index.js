@@ -2,12 +2,11 @@ import React, { Component, Fragment } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Form, H1, Label, Button, showMessage, Dropdown } from 'components'
 import Input, { MaskedInput } from 'components/input'
-import { assoc, isEmpty, join, defaultTo } from 'ramda'
+import { assoc, isEmpty, join } from 'ramda'
 import validate from './validation'
 import measurementUnits from './measurementUnits'
-import { newId } from 'common'
 import { createNumberMask } from 'common/masks'
-import { create, getById } from 'api/products'
+import { getById, create, update } from 'api/products'
 import styles from './styles.styl'
 const MASK = createNumberMask({ prefix: 'R$', thousandsSeparatorSymbol: '.', allowDecimal: true, decimalSymbol: ',' })
 
@@ -40,10 +39,15 @@ class CreateProduct extends Component {
       return showMessage('Oops!', join('\r\n')(errors), 'error')
     }
 
-    var defaultToId = defaultTo(newId())
-    const { product } = this.state
     const selectedUnit = measurementUnits.find(unit => unit.name === product.measurementUnit)
-    create({ ...product, id: defaultToId(product.id), amount: selectedUnit.convert(product.amount) })
+    const product = { ...this.state.product, amount: selectedUnit.convert(this.state.product.amount) }
+
+    if (product.id) {
+      update(product)
+    } else {
+      create(product)
+    }
+
     showMessage('Success', 'Your product was stored successfully!', 'success')
   }
 
