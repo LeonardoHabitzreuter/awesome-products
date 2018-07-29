@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { withRouter } from 'react-router-dom'
 import { Form, H1, Label, Button, showMessage, Dropdown } from 'components'
 import Input, { MaskedInput } from 'components/input'
 import { assoc, isEmpty, join, defaultTo } from 'ramda'
@@ -7,6 +8,7 @@ import measurementUnits from './measurementUnits'
 import { newId } from 'common'
 import { createNumberMask } from 'common/masks'
 import { store } from 'storage'
+import styles from './styles.styl'
 const MASK = createNumberMask({ prefix: 'R$', thousandsSeparatorSymbol: '.', allowDecimal: true, decimalSymbol: ',' })
 
 class CreateProduct extends Component {
@@ -39,6 +41,12 @@ class CreateProduct extends Component {
     console.log(x)
     store(x.id, x)
     showMessage('Success', 'Your product was stored successfully!', 'success')
+  }
+
+  redirectToProductsPage () {
+    const { history } = this.props
+
+    history.push('/products')
   }
 
   render () {
@@ -99,11 +107,12 @@ class CreateProduct extends Component {
               <Input id='manufactureDate' placeholder='Manufacture date' required />
             </div>
           </div>
-          <Button>Create</Button>
+          <Button type='button' className='btn btn-danger' onClick={() => this.redirectToProductsPage()}>Cancel</Button>
+          <Button className={`btn btn-success ${styles.createButton}`}>Create</Button>
         </Form>
       </Fragment>
     )
   }
 }
 
-export default CreateProduct
+export default withRouter(CreateProduct)
