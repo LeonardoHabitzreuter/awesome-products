@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react'
-import Table from './Table'
+import Table from './table'
 import { Button, showMessage } from 'components'
 import { get as getProducts, remove as deleteProduct } from 'api/products'
 import { Redirect } from 'react-router-dom'
+import Styles from './styles.styl'
 
 class ReadProducts extends Component {
   state = {
@@ -51,7 +52,7 @@ class ReadProducts extends Component {
       ) : (
         <Fragment>
           <h1>Products</h1>
-          <Button type='button' onClick={() => this.redirectToCreatePage()}>Create a new product</Button>
+          <Button type='button' className={`btn btn-primary ${Styles.buttonMargin}`} onClick={() => this.redirectToCreatePage()}>Create a new product</Button>
           <Table
             onEdit={productId => this.redirectToEditPage(productId)}
             onDelete={productId => this.delete(productId)}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table, Icon } from 'components'
 import PropTypes from 'prop-types'
+import Styles from './styles.styl'
 
 const ProductsTable = ({ onEdit, onDelete, products }) => (
   <Table
@@ -26,6 +27,12 @@ const columns = (onEdit, onDelete) => (
     description: 'Perishable',
     key: 'perishable'
   }, {
+    description: 'Expiry date',
+    key: 'expiryDate'
+  }, {
+    description: 'Manufacture date',
+    key: 'manufactureDate'
+  }, {
     description: 'Actions',
     renderer: () => (
       <Actions
@@ -39,10 +46,12 @@ const columns = (onEdit, onDelete) => (
 const Actions = ({ onEdit, onDelete, data }) => (
   <div>
     <Icon
+      className={`${Styles.tableIcon} ${Styles.blue}`}
       type='edit'
       onClick={() => onEdit(data.id)}
     />
     <Icon
+      className={`${Styles.tableIcon} ${Styles.red}`}
       type='delete'
       onClick={() => onDelete(data.id)}
     />

@@ -18,6 +18,7 @@ Input.prototype = {
   className: PropTypes.string,
   maxLength: PropTypes.number,
   minLength: PropTypes.number,
+  max: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,

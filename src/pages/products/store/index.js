@@ -66,7 +66,7 @@ class StoreProduct extends Component {
         <H1>Store your product</H1>
         <Form onSubmit={() => this.storeProduct()}>
           <div className='form-row'>
-            <div className='col-md-12 mb-9'>
+            <div className='col-md-12 mb-3'>
               <Label className={styles.labelsSize} htmlFor='perishable'>Perishable</Label>
               <Boolean
                 id='perishable'
@@ -133,6 +133,7 @@ class StoreProduct extends Component {
                 id='manufactureDate'
                 type='date'
                 required
+                max={this.state.product.expiryDate}
                 value={this.state.product.manufactureDate}
                 onChange={manufactureDate => this.handleChange('manufactureDate', manufactureDate)} />
             </div>

@@ -12,7 +12,14 @@ const validateMeasurementUnit = curry((measurementUnit, errors) => (
     : errors
 ))
 
+const validateExpiryDate = curry((expiryDate, errors) => (
+  expiryDate && new Date(expiryDate) < Date.now()
+    ? [ ...errors, 'A expired product can not be stored' ]
+    : errors
+))
+
 export default product => pipe(
   validateName(product.name),
-  validateMeasurementUnit(product.measurementUnit)
+  validateMeasurementUnit(product.measurementUnit),
+  validateExpiryDate(product.expiryDate)
 )([])
