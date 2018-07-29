@@ -7,7 +7,7 @@ import validate from './validation'
 import measurementUnits from './measurementUnits'
 import { newId } from 'common'
 import { createNumberMask } from 'common/masks'
-import { store } from 'storage'
+import { create } from 'api/products'
 import styles from './styles.styl'
 const MASK = createNumberMask({ prefix: 'R$', thousandsSeparatorSymbol: '.', allowDecimal: true, decimalSymbol: ',' })
 
@@ -34,12 +34,10 @@ class CreateProduct extends Component {
       return showMessage('Oops!', join('\r\n')(errors), 'error')
     }
 
-    const selectedUnit = measurementUnits.find(unit => unit.name === this.state.product.measurementUnit)
-    const { product } = this.state
     var defaultToId = defaultTo(newId())
-    const x = { ...product, id: defaultToId(product.id), amount: selectedUnit.convert(product.amount) }
-    console.log(x)
-    store(x.id, x)
+    const { product } = this.state
+    const selectedUnit = measurementUnits.find(unit => unit.name === product.measurementUnit)
+    create({ ...product, id: defaultToId(product.id), amount: selectedUnit.convert(product.amount) })
     showMessage('Success', 'Your product was stored successfully!', 'success')
   }
 
