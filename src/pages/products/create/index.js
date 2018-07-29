@@ -33,6 +33,7 @@ class CreateProduct extends Component {
     const { product } = this.state
     const x = { ...product, amount: selectedUnit.convert(product.amount) }
     console.log(x)
+    showMessage('Success', 'Your product was stored successfully!', 'success')
   }
 
   render () {
