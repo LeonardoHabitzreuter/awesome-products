@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 const ProductsTable = ({ onEdit, onDelete, products }) => (
   <Table
     columns={columns(onEdit, onDelete)}
-    data={products}
+    data={products.map(product => ({ ...product, perishable: product.perishable ? 'Yes' : 'No' }))}
   />
 )
 
@@ -22,6 +22,9 @@ const columns = (onEdit, onDelete) => (
   }, {
     description: 'Price',
     key: 'price'
+  }, {
+    description: 'Perishable',
+    key: 'perishable'
   }, {
     description: 'Actions',
     renderer: () => (

@@ -58,6 +58,3 @@ npm run build:dev
 - AntD for the menu component
 - Babel for transpile the code to ES5
 - Jest e enzyme for automated tests
-
-### ToDo:
-configure docker
