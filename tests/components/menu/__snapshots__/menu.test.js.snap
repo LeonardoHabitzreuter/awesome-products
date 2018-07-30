@@ -15,20 +15,20 @@ exports[`Menu component should renders properly 1`] = `
   theme="dark"
 >
   <MenuItem
-    key="/newProduct"
+    key="/storeProduct"
   >
     <Icon
-      type="logout"
+      type="profile"
     />
     <span>
-      New Product
+      Store a Product
     </span>
   </MenuItem>
   <MenuItem
     key="/products"
   >
     <Icon
-      type="logout"
+      type="table"
     />
     <span>
       My Products
